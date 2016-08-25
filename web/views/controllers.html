@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<link>
+<link>
+    <title>ControllerTest</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/scripts/ng/angular.min.js"></script>
+    <link href="/styles/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1>ControllerTest</h1>
+<div ng-app="myApp" >
+    <div ng-controller="personCtrl" style="margin: auto;width: 300px">
+    名: <input type="text" class="form-control" ng-model="firstName"><br>
+    姓: <input type="text" class="form-control" ng-model="lastName"><br>
+    <br>
+    姓名: {{firstName+" " + lastName}}
+    </div>
+    <div ng-controller="newCtrl" style="margin: auto;width: 300px">
+        First Name: <input type="text" class="form-control" ng-model="firstName"><br>
+        Last Name: <input type="text" class="form-control" ng-model="lastName"><br>
+        <br>
+        Your Name: {{fullName()}}
+    </div>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('personCtrl', function($scope) {
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+        $scope.fullName = function() {
+            return $scope.firstName + " " + $scope.lastName;
+        }
+    });
+    app.controller('newCtrl', function($scope) {
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+        $scope.fullName = function() {
+            return $scope.firstName + " " + $scope.lastName;
+        }
+    });
+</script>
+
+</body>
+</html>

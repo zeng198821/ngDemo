@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/scripts/ng/angular.min.js"></script>
+    <link href="/styles/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+    <div ng-app="MyApp">
+        <div ng-controller="PcController" style="width: 300px;margin: auto;">
+            <p> FirstName:<input type="text" class="form-control" ng-model="FirstName" placeholder="Enter First Name"> </p>
+            <p> LastName:<input type="text" class="form-control"  ng-model="LastName" placeholder="Enter Last Name"> </p>
+            <br/>
+            Your Full Name : {{getFullName()}}
+            <br/>
+            rootInfo : {{$root.rootinfo}}
+            <button ng-click="showName" class="btn btn-info">ShowName</button>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        var myapp = angular.module('MyApp',[]).run(function ($rootScope){
+                $rootScope.rootinfo = {a:"rootinfo"};
+        });
+        myapp.controller('PcController' ,['$scope','$rootScope',function ($scope,$rootScope) {
+            //$scope.rootinfo = $rootScope.rootinfo;
+            $scope.FirstName= "prngfei";
+            $scope.LastName = "zeng";
+            $scope.getFullName = function(){
+                $rootScope.rootinfo.a = $scope.FirstName + "  " + $scope.LastName;
+                return $scope.FirstName + "  " + $scope.LastName + "rootInfo :" + $scope.rootinfo.a;
+            }
+        }]
+        );
+
+    </script>
+
+</body>
+</html>

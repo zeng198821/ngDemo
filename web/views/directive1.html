@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Directive</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/scripts/ng/angular.min.js"></script>
+    <link href="/styles/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+    <div ng-app="MyApp">
+        <h1>Directive Test</h1>
+
+        <div ng-controller="PcController" style="width: 300px;margin: auto;" my-Directive>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var myapp = angular.module('MyApp',[]).directive('myDirective',function () {
+            return{
+                restrict:'EACM',
+                replace:true,
+                template:'<button ng-click="showName" class="btn btn-primary">ShowName</button>'
+            };});
+//        angular.module('MyApp.filters',[]).filter('capitalize',function (){
+//            return function (inputStr) {
+//                if(inputStr){
+//                    return inputStr[0].toUpperCase() + inputStr.slice(1);
+//                }
+//            }
+//        });
+        myapp.controller('PcController' ,['$scope','$rootScope','$filter',function ($scope,$rootScope,$filter) {
+
+            $scope.FirstName = "PengFei";
+            $scope.FirstName= $filter('lowercase')("pengfei");
+            $scope.LastName = "zeng";
+            $scope.Age = 1;
+            $scope.getFullName = function(){
+                $rootScope.rootinfo.a = $scope.FirstName + "  " + $scope.LastName;
+                return $scope.FirstName + "  " + $scope.LastName ;
+            }
+        }]
+        ).filter('capitalize',function (){
+            return function (inputStr) {
+                if(inputStr){
+                    return inputStr[0].toUpperCase();
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>

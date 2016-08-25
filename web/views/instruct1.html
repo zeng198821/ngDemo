@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>InStuct</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/scripts/ng/angular.min.js"></script>
+    <link href="/styles/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <style type="text/css">
+        .highlight {
+            padding: 9px 14px;
+            margin-bottom: 14px;
+            background-color: #f7f7f9;
+            border: 1px solid #e1e1e8;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body>
+<div ng-app="MyApp">
+    <div ng-controller="PcController" style="width: 500px;margin: auto;">
+        <div style="width:100%; margin-left: 50px;"><h1>InStuct Test</h1></div>
+        <!-- ng-switch -->
+        <div class="highlight">
+            <h2>ng-switch</h2>
+            <p> Switch Text :<input type="text" class="form-control" ng-model="switchData.switchKey"
+                                    placeholder="Enter Switch Text "/>
+            </p>
+            <div ng-switch on="switchData.switchKey">
+                <p ng-switch-default>{{switchData.switchDefaultValue}}</p>
+                <h3 ng-switch-when="switchok">{{switchData.switchShowInfo}}</h3>
+            </div>
+        </div>
+        <br/>
+        <br/>
+
+        <!-- ng-switch -->
+        <div class="highlight">
+            <h2>ng-switch</h2>
+            <p> Switch Text :<input type="text" class="form-control" ng-model="switchData.switchKey"
+                                    placeholder="Enter Switch Text "/>
+            </p>
+            <div ng-switch on="switchData.switchKey">
+                <p ng-switch-default>{{switchData.switchDefaultValue}}</p>
+                <h3 ng-switch-when="switchok">{{switchData.switchShowInfo}}</h3>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    var myapp = angular.module('MyApp', []);
+    myapp.controller('PcController', ['$scope', '$rootScope', '$filter', function ($scope, $rootScope, $filter) {
+                $scope.switchData = {
+                    switchKey: "",
+                    switchDefaultValue: "switchDefault-zeng",
+                    switchShowInfo: "switchDefault-show"
+                };
+                $scope.FirstName = "PengFei";
+                $scope.FirstName = $filter('lowercase')("PengFei");
+                $scope.LastName = "zeng";
+                $scope.Age = 1;
+                $scope.buttonText = "scopetext";
+                $scope.getFullName = function () {
+                    $rootScope.rootinfo.a = $scope.FirstName + "  " + $scope.LastName;
+                    return $scope.FirstName + "  " + $scope.LastName;
+                }
+            }]
+    );
+</script>
+</body>
+</html>
