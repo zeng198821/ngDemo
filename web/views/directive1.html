@@ -29,7 +29,6 @@
 //            }
 //        });
         myapp.controller('PcController' ,['$scope','$rootScope','$filter',function ($scope,$rootScope,$filter) {
-
             $scope.FirstName = "PengFei";
             $scope.FirstName= $filter('lowercase')("pengfei");
             $scope.LastName = "zeng";
