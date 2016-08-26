@@ -14,8 +14,27 @@
             border: 1px solid #e1e1e8;
             border-radius: 4px;
         }
-        .odd{ background-color: #660099; }
-        .even{ background-color: #6600FF; }
+        .odd{
+            background-color: #660099;
+        }
+        .even{
+            background-color: #6600FF;
+        }
+        .ng-invalid  {
+            //border: 1px solid #660099;
+        }
+        .ng-valid {
+            //border: 1px solid #e1e1e8;
+        }
+        .sigwarning{
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            color: #8a6d3b;
+            background-color: #fcf8e3;
+            border-color: #faebcc;
+        }
 
     </style>
 </head>
@@ -55,16 +74,55 @@
         <!-- ng-select -->
         <div class="highlight">
             <h2>ng-select</h2>
-            <select ng-model="selectedValue" ng-options="tmpdict.dictName for tmpdict in listData">
+            <select class="form-control" ng-model="selectedValue" ng-options="tmpdict.dictName for tmpdict in listData">
                <option value="" >请选择...</option>
             </select>
-            <h4 ng-show="selectedValue.dictID">您选择的区号是:{{selectedValue.dictID}} 地区是:{{selectedValue.dictName}}</h4>
+            <h4 ng-show="selectedValue.dictID">
+                您选择的区号是:{{selectedValue.dictID}} 地区是:{{selectedValue.dictName}}
+            </h4>
         </div>
 
         <!-- ng-href -->
         <div class="highlight">
             <h2>ng-href</h2>
             <a ng-href="{{ myhref }}">此处延迟两秒加载</a>
+        </div>
+
+        <!-- ng-form -->
+        <div class="highlight">
+            <h2>ng-form</h2>
+            <form name="test_form" ng-submit="submitForm()" novalidate name="testform">
+                <div class="form-group">
+                    <label for="city" >City</label>
+                    <select id="city" class="form-control" ng-model="sigFormData.city" ng-options="tmpdict.dictName for tmpdict in listData">
+                        <option value="" >请选择...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email" >Email</label>
+                    <input id="email" type="text" name="email" class="form-control" ng-minlength="5"  ng-class="{sigwarning : test_form.email.$invalid && test_form.email.$dirty}" ng-model="sigFormData.email" placeholder="Enter Your Email" ng-required="true" />
+                    <div> </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password" class="form-control" ng-minlength="6"  ng-model="sigFormData.password" placeholder="Enter Your Password"/>
+                    <div class="error" ng-show="test_form.password.$dirty && test_form.password.$invalid">
+                        <small class="alert-warning" ng-show="test_form.password.$error.minlength">您输入的密码少于六位！</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="savepass">Save Password：</label>
+                    <input id="savepass" type="checkbox" name="issaved" class="checkbox-inline" ng-model="sigFormData.issaved"/>
+                </div>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary" ng-class="{active : sigFormData.isneed }">
+                        <input type="checkbox" name="isneed" ng-model="sigFormData.isneed" autocomplete="off" checked> Need
+                        <span class="glyphicon glyphicon-star" ng-show="sigFormData.isneed" aria-hidden="true"></span>
+                    </label>
+                </div>
+                <p>{{sigFormData}}</p>
+                <p>{{test_form}}</p>
+            </form>
         </div>
 
     </div>
@@ -94,9 +152,13 @@
                     {dictID:"0579",dictName:"金华"},
                     {dictID:"0577",dictName:"温州"}
                 ];
+                $scope.sigFormData = {password:"123"};
                 $scope.getFullName = function () {
                     $rootScope.rootinfo.a = $scope.FirstName + "  " + $scope.LastName;
                     return $scope.FirstName + "  " + $scope.LastName;
+                }
+                $scope.submitForm = function () {
+                    console.info($scope.sigFormData );
                 }
             }]
     );
