@@ -35,7 +35,6 @@
             background-color: #fcf8e3;
             border-color: #faebcc;
         }
-
     </style>
 </head>
 <body>
@@ -55,7 +54,6 @@
         </div>
         <br/>
         <br/>
-
         <!-- ng-repeat -->
         <div class="highlight">
             <h2>ng-repeat</h2>
@@ -65,7 +63,6 @@
                 </li>
             </ul>
         </div>
-
         <!-- ng-bind -->
         <div class="highlight">
             <h2>ng-bind</h2>
@@ -81,13 +78,11 @@
                 您选择的区号是:{{selectedValue.dictID}} 地区是:{{selectedValue.dictName}}
             </h4>
         </div>
-
         <!-- ng-href -->
         <div class="highlight">
             <h2>ng-href</h2>
             <a ng-href="{{ myhref }}">此处延迟两秒加载</a>
         </div>
-
         <!-- ng-form -->
         <div class="highlight">
             <h2>ng-form</h2>
@@ -124,9 +119,7 @@
                 <p>{{test_form}}</p>
             </form>
         </div>
-
     </div>
-
 </div>
 <script type="text/javascript">
     var myapp = angular.module('MyApp', []).run(function($rootScope,$timeout){
